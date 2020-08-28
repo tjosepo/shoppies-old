@@ -5,18 +5,3 @@ html, body {
   border: 0;
   background-color: #f4f6f8;
 }
-
-body {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2rem;
-  text-transform: initial;
-  letter-spacing: initial;
-  font-family: -apple-system, BlinkMacSystemFont, San Francisco, Roboto, Segoe UI, Helvetica Neue, sans-serif;
-  color: var(--p-text, #212b36);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}

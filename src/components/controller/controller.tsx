@@ -1,9 +1,10 @@
-import React from "react"
+import React from "react";
+import { SearchBar } from "../";
 
 export default function Controller() {
   return (
-      <>
-        I am the controller!
-      </>
+      <div className="controller">
+        <SearchBar />
+      </div>
     )
 }
