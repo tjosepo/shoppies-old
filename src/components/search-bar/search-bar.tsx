@@ -7,7 +7,7 @@ export default function SearchBar({ setTitle, searchTitle}: { setTitle: Function
     if (title.length < 1) return;
     await searchTitle({variables: {search: title}})
     setTitle(title);
-  }, 500), []);
+  }, 800), []);
 
   return (
     <div className="card mb-4">
