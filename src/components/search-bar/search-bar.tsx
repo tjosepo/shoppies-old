@@ -1,22 +1,16 @@
 import React, { useCallback } from "react";
 import { debounce } from "lodash";
-import { useLazyQuery } from "@apollo/client";
-import { SEARCH_TITLE } from "../../queries";
 
-export default function SearchBar() {
-  const [getTitles, { data }] = useLazyQuery(SEARCH_TITLE);
+export default function SearchBar({ setTitle, searchTitle}: { setTitle: Function, searchTitle: Function }) {
 
-  const searchFor = useCallback(debounce((title: string) => {
+  const searchFor = useCallback(debounce(async (title: string) => {
     if (title.length < 1) return;
-    getTitles({variables: {search: title}})
+    await searchTitle({variables: {search: title}})
+    setTitle(title);
   }, 500), []);
 
-  if (data) {
-    console.log(data);
-  }
-
   return (
-    <div className="card">
+    <div className="card mb-4">
       <div className="card-body">
         <label className="font-weight-bold" htmlFor="SearchBar">Movie Title</label>
         <div className="input-group">
@@ -26,6 +20,6 @@ export default function SearchBar() {
           <input type="text" className="form-control" id="SearchBar" onChange={(e) => searchFor(e.target.value)}/>
         </div>
       </div>
-  </div>
-    )
+    </div>
+  )
 }

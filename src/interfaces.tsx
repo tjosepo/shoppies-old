@@ -5,3 +5,9 @@ export interface Title {
   Type: string;
   Poster: string;
 }
+
+export interface SearchData {
+  result: {
+    Search: Title[];
+  }
+}
