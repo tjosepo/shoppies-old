@@ -3,9 +3,10 @@ import { debounce } from "lodash";
 
 export default function SearchBar({ setTitle, searchTitle}: { setTitle: Function, searchTitle: Function }) {
 
-  const searchFor = useCallback(debounce(async (title: string) => {
+  const searchFor = useCallback(debounce((title: string) => {
+    title = title.trim();
     if (title.length < 1) return;
-    await searchTitle({variables: {search: title}})
+    searchTitle({variables: {search: title}})
     setTitle(title);
   }, 800), []);
 
