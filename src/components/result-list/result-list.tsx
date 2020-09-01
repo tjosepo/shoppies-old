@@ -49,7 +49,8 @@ export default function ResultList({ title, searchData, loading, nominationList,
                   type="button" 
                   className="btn btn-light" 
                   onClick={() => addNomination(title.imdbID)}
-                  disabled={nominationList.find((nominated) => nominated.imdbID === title.imdbID) !== undefined}>
+                disabled={nominationList.find((nominated) => nominated.imdbID === title.imdbID) !== undefined
+                  || nominationList.length >= 5}>
                     Nominate
                 </button>
               </li>
