@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_TITLE = gql`
   query GET_TITLE {
-    title(t: $title, i: $id) @rest(path: "/?apikey=${process.env.REACT_APP_OMBD_KEY}&{args}") {
+    title(t: $title, i: $id) @rest(path: "/?apikey=${process.env.REACT_APP_OMBD_KEY}&type=movie&{args}") {
       Title
       Year
       imdbID
@@ -14,7 +14,7 @@ export const GET_TITLE = gql`
 
 export const SEARCH_TITLE = gql`
   query SEARCH {
-    result(s: $search) @rest(path: "/?apikey=${process.env.REACT_APP_OMBD_KEY}&{args}") {
+    result(s: $search) @rest(path: "/?apikey=${process.env.REACT_APP_OMBD_KEY}&type=movie&{args}") {
       Search {
         Title
         Year
