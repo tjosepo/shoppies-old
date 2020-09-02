@@ -20,7 +20,7 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="container">
+      <div className="container" style={{ marginTop: "60px", marginBottom: "60px" }}>
         <h1>The Shoppies</h1>
         <Controller />
       </div>

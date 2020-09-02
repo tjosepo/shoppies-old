@@ -37,3 +37,30 @@ export const loadNominationList = (callback: Function) => {
     }
   }
 }
+
+export const findNominationById = (imdbID: string, callback: Function) => {
+  const req = indexedDB.open('Shoppies', 1);
+
+  req.onupgradeneeded = () => {
+    const db = req.result;
+    if (!db.objectStoreNames.contains('nominations')) {
+      db.createObjectStore('nominations', { keyPath: 'imdbID' });
+    }
+  }
+
+  req.onsuccess = () => {
+    const db = req.result;
+    const tx = db.transaction('nominations', 'readonly');
+    const store = tx.objectStore('nominations');
+    const data = store.get(imdbID);
+
+    data.onsuccess = () => {
+      const nomination = data.result as Title;
+      callback(nomination);
+    }
+
+    data.onerror = () => {
+      callback(null);
+    }
+  }
+}
