@@ -24,6 +24,7 @@ function App() {
         <h1>The Shoppies</h1>
         <Controller />
       </div>
+      <div className="legal">Made by <a href="https://github.com/tommy-josepovic">Tommy Josépovic</a></div>
     </ApolloProvider>
   );
 }
