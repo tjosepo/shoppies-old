@@ -11,7 +11,7 @@ import './styles.scss';
 
 
 function App() {
-  const restLink = new RestLink({ uri: "http://omdbapi.com" });
+  const restLink = new RestLink({ uri: "https://omdbapi.com" });
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
