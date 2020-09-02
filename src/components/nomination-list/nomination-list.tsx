@@ -21,7 +21,7 @@ export default function NominationList({ nominationList, setNominationList }: { 
               {title.Title} ({title.Year})
               <button
                 type="button"
-                className="btn btn-light"
+                className="btn btn-light ml-2"
                 onClick={() => removeNomination(title.imdbID)}>
                 Remove
               </button>

@@ -18,7 +18,11 @@ export default function ResultList({ title, searchData, loading, nominationList,
       <div className="card mb-4">
         <div className="card-body">
           <p className="font-weight-bold">Results for "{title}"</p>
-          <p>Loading...</p>
+          <div className="text-center mt-4 mb-4">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -48,14 +52,14 @@ export default function ResultList({ title, searchData, loading, nominationList,
           {titles.map((title: Title) =>
             <li key={title.imdbID} className="mb-1">
               {title.Title} ({title.Year})
-                <button
+                  <button
                 type="button"
-                className="btn btn-light"
+                className="btn btn-light ml-2"
                 onClick={() => addNomination(title.imdbID)}
                 disabled={nominationList.find((nominated) => nominated.imdbID === title.imdbID) !== undefined
                   || nominationList.length >= 5}>
                 Nominate
-                </button>
+                  </button>
             </li>
           )}
         </ul>
