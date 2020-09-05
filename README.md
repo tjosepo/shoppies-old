@@ -1,7 +1,9 @@
 ## UX Developer Intern & Web Developer Intern Challenge - Winter 2021
+You can test the app at: https://shoppies-challenge.web.app/.
+
 You can see the original requirements for this project [here](https://docs.google.com/document/d/1AZO0BZwn1Aogj4f3PDNe1mhq8pKsXZxtrG--EIbP_-w/edit#heading=h.31w9woubunro).
 
-This project was bootstrapped with [**Create React App**](https://github.com/facebook/create-react-app), and uses [**React**](https://github.com/facebook/react), [**TypeScript**](https://github.com/microsoft/TypeScript), [**Apollo Client**](https://github.com/apollographql/apollo-client), and [**Bootstrap**](https://github.com/twbs/bootstrap). 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), and uses [React](https://github.com/facebook/react), [TypeScript](https://github.com/microsoft/TypeScript), [Apollo Client](https://github.com/apollographql/apollo-client), and [Material-UI](https://material-ui.com/). 
 
 ## The Challenge
 > We need a webpage that can search OMDB for movies, and allow the user to save their favourite films they feel should be up for nomination. When they've selected 5 nominees they should be notified they're finished.
@@ -20,9 +22,9 @@ This challenge was perfectly suited to using a library like **React**. The diffe
 - **Banner**: Informs the user when 5 movies have been nominated.
 - **Controller**: Orchestrates the interactions between the different components, and stores the shared states.
 
-To obtain a decent looking website quickly, I used **Bootstrap**. I personally really like the look of Bootstrap, even if its popularity has the undesired side effect of making  websites that use it look generic.
-
 **TypeScript** and **Apollo Client** were really not necessary for this project, but both are great new tools that are likely to redefine the future of web development. They are also both used at Shopify. This project was a good opportunity for me to further practice using these tools.
+
+I spent a lot of time on the styling. Altough I do not consider myself to be a good designer, I managed to cobble something I am proud of. 
 
 ## Available Scripts
 
