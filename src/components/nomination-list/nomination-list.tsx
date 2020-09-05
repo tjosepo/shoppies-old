@@ -1,10 +1,14 @@
-import React, { useState } from "react"
-import { Title } from "../../interfaces"
-import { saveNominationList } from "../../database"
+import React, { useState } from "react";
+import { Title } from "../../interfaces";
+import { saveNominationList } from "../../database";
+import "./nomination-list.scss";
+import { Button, List, ListItem, ListItemSecondaryAction, ListItemText, Snackbar, Portal, IconButton } from "@material-ui/core";
+import { Close } from "@material-ui/icons"
+import { Preview } from "..";
 
 export default function NominationList({ nominationList, setNominationList }: { nominationList: Title[], setNominationList: Function }) {
-
-  const [shareBtnText, setShareBtnText] = useState("Get shareable link");
+  const [preview, setPreview] = useState<Title>();
+  const [notification, setNotification] = useState(false);
 
   const removeNomination = (imdbID: string) => {
     const newNominationList = nominationList.filter((nomination: Title) => nomination.imdbID !== imdbID);
@@ -17,31 +21,72 @@ export default function NominationList({ nominationList, setNominationList }: { 
     const baseurl = window.location.protocol + '//' + window.location.host + window.location.pathname;
     const query = `?nominations=${IDs.join(',')}`;
     navigator.clipboard.writeText(`${baseurl}${query}`);
-    setShareBtnText("Link saved to clipboard!");
+    setNotification(true)
   }
 
-  if (nominationList.length < 1) return <></>;
+
+
+
+  if (nominationList.length < 1) return (
+    <div className="nomination-list">
+      <h2>Nominations</h2>
+      <p>No movie has been nominated.</p>
+    </div>
+  
+    );
 
   return (
-    <div className="card">
-      <div className="card-body">
-        <p className="font-weight-bold">Nominations</p>
-        <ul>
+    <div className="nomination-list">
+      <h2>
+        Nominations
+        <Button
+            style={{ marginLeft: 10}}
+            color="secondary"
+            onClick={getSharableLink}>
+              Share
+        </Button>
+      </h2>
+      <div className="grid">
+        <List className="list">
           {nominationList.map((title: Title) =>
-            <li key={title.imdbID} className="mb-1">
-              {title.Title} ({title.Year})
-              <button
+            <ListItem 
+              key={title.imdbID} button className="list-item"
+              onClick={() => setPreview(title)}
+              selected={title.imdbID === preview?.imdbID}>
+              <ListItemText primary={`${title.Title} (${title.Year})`} style={{ paddingRight: 60 }} />
+              <ListItemSecondaryAction>
+              <Button
                 type="button"
-                className="btn btn-light ml-2"
-                onClick={() => removeNomination(title.imdbID)}>Remove</button>
-            </li>
+                onClick={() => removeNomination(title.imdbID)}>Remove</Button>
+              </ListItemSecondaryAction>
+            </ListItem>
           )}
-        </ul>
-        <button
-          className="btn btn-outline-primary"
-          onClick={getSharableLink}
-          onMouseLeave={() => setShareBtnText("Get shareable link")}>{shareBtnText}</button>
+        </List>
+        {preview &&
+            <>
+              <Preview title={preview} />
+              <img className="preview-image" src={preview.Poster} alt=""/>
+            </>
+          }
       </div>
+
+      <Portal>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={notification}
+          autoHideDuration={6000}
+          onClose={() => setNotification(false)}
+          message="Link saved to clipboard"
+          action={
+            <IconButton size="small" aria-label="close" color="inherit" onClick={() => setNotification(false)}>
+              <Close fontSize="small" />
+            </IconButton>
+          }
+        />
+      </Portal>
     </div>
   )
 }

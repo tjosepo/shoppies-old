@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { SearchBar, ResultList, NominationList, Banner } from "../";
+import { SearchBar, ResultList, NominationList, Navigation } from "../";
 import { useLazyQuery, useApolloClient } from "@apollo/client";
 import { SEARCH_TITLE, GET_TITLE } from "../../queries";
 import { Title } from "../../interfaces";
-import { loadNominationList, saveNominationList, findNominationById } from "../../database"
+import { loadNominationList, saveNominationList, findNominationById } from "../../database";
+import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
+import { Search, Favorite } from "@material-ui/icons";
+import "./controller.scss";
 
 export default function Controller() {
   const [title, setTitle] = useState("...");
   const [nominationList, setNominationList] = useState<Title[]>([])
   const [searchTitle, { loading, data: searchData }] = useLazyQuery(SEARCH_TITLE);
   const client = useApolloClient();
+  const [page, setPage] = useState('nominations');
 
 
   useEffect(() => {
@@ -52,12 +56,29 @@ export default function Controller() {
     }
   }, [client])
 
+  let main: React.ReactNode;
+  switch(page) {
+    case 'search':
+      main = <ResultList title={title} searchData={searchData} loading={loading} nominationList={nominationList} setNominationList={setNominationList} />;
+      break;
+    case 'nominations':
+    default:
+      main = <NominationList nominationList={nominationList} setNominationList={setNominationList} />
+      break;
+  }
+
   return (
     <div className="controller">
-      <Banner nominationList={nominationList} />
-      <SearchBar setTitle={setTitle} searchTitle={searchTitle} />
-      <ResultList title={title} searchData={searchData} loading={loading} nominationList={nominationList} setNominationList={setNominationList} />
-      <NominationList nominationList={nominationList} setNominationList={setNominationList} />
+      <Navigation>
+        <SearchBar setTitle={setTitle} searchTitle={searchTitle} setPage={setPage}/>
+      </Navigation>
+      <main className="main">
+        {main}
+      </main>
+      <BottomNavigation className="bottom-navigation" value={page} onChange={(e, value) => setPage(value)}showLabels>
+        <BottomNavigationAction label="Nominations" value="nominations" icon={<Favorite />} />
+        <BottomNavigationAction label="Search" value="search" icon={<Search />} />
+      </BottomNavigation>
     </div>
   )
 }
