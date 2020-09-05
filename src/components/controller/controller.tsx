@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { SearchBar, ResultList, NominationList, Navigation } from "../";
+import { SearchBar, ResultList, NominationList, Navigation, About } from "../";
 import { useLazyQuery, useApolloClient } from "@apollo/client";
 import { SEARCH_TITLE, GET_TITLE } from "../../queries";
 import { Title } from "../../interfaces";
 import { loadNominationList, saveNominationList, findNominationById } from "../../database";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
-import { Search, Favorite } from "@material-ui/icons";
+import { Search, Favorite, Info } from "@material-ui/icons";
 import "./controller.scss";
 
 export default function Controller() {
@@ -65,6 +65,8 @@ export default function Controller() {
     default:
       main = <NominationList nominationList={nominationList} setNominationList={setNominationList} />
       break;
+    case 'about':
+      main = <About />
   }
 
   return (
@@ -78,6 +80,7 @@ export default function Controller() {
       <BottomNavigation className="bottom-navigation" value={page} onChange={(e, value) => setPage(value)}showLabels>
         <BottomNavigationAction label="Nominations" value="nominations" icon={<Favorite />} />
         <BottomNavigationAction label="Search" value="search" icon={<Search />} />
+        <BottomNavigationAction label="About" value="about" icon={<Info />} />
       </BottomNavigation>
     </div>
   )
