@@ -1,3 +1,4 @@
+![Project Logo](https://github.com/tommy-josepovic/shopify-intern-challenge-w2021/blob/master/public/shoppies.png)
 ## UX Developer Intern & Web Developer Intern Challenge - Winter 2021
 You can test the app at: https://shoppies-challenge.web.app/.
 
