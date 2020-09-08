@@ -20,12 +20,13 @@ This challenge was perfectly suited to using a library like **React**. The diffe
 - **Search bar**: Handles user input, and sends the queries to the OMDB API.
 - **Results list**: Displays the result of the query, and allows the user to nominate a movie.
 - **Nomination list**: Displays the nominated movies, and allows the user to remove a movie's nomiation.
-- **Banner**: Informs the user when 5 movies have been nominated.
 - **Controller**: Orchestrates the interactions between the different components, and stores the shared states.
 
 **TypeScript** and **Apollo Client** were really not necessary for this project, but both are great new tools that are likely to redefine the future of web development. They are also both used at Shopify. This project was a good opportunity for me to further practice using these tools.
 
-I spent a lot of time on the styling. Altough I do not consider myself to be a good designer, I managed to cobble something I am proud of. 
+For the extras, I made **sharable links** and **used IndexedDB for storage for when the user leaves the page**.  
+
+I spent a lot of time on the styling, using Material-UI and my own styles. Altough I do not consider myself to be a good designer, I managed to cobble something I am proud of. 
 
 ## Available Scripts
 
