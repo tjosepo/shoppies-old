@@ -16,7 +16,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 > - Remove a nominee from the nomination list
 
 ## My solution
-This challenge was perfectly suited to using a library like **React**. The different components and their interactions were very well defined. You really only need 5 components:
+This challenge was perfectly suited to using a library like **React**. The different components and their interactions were very well defined. You really only need 4 components:
 - **Search bar**: Handles user input, and sends the queries to the OMDB API.
 - **Results list**: Displays the result of the query, and allows the user to nominate a movie.
 - **Nomination list**: Displays the nominated movies, and allows the user to remove a movie's nomiation.
